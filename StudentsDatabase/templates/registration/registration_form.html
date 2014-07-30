@@ -1,0 +1,25 @@
+{% extends 'core.html' %}
+{% load %}
+
+{% block title %}Register{% endblock %}
+{% block content %}
+
+<div class="well">
+    <h1>Register</h1>
+
+    <form action="." method="POST" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+            {{ form }}
+        </fieldset>
+
+        <div class="form-actions">
+            <a href="{% url 'index' %}" class="btn btn-warning">Nuh-uh</a>
+            <button type="submit" class="btn btn-primary">Register</button>
+            <input type="hidden" name="next" value="{{ next }}"/>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

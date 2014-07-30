@@ -1,0 +1,50 @@
+{% extends 'core.html' %}
+{% load static bootstrap %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="well">
+        <h1>Groups</h1>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <table class="table" id="groups-table">
+        <tr>
+            <th>Group</th>
+            <th>Head</th>
+            <th>Count</th>
+            <th>Actions</th>
+        </tr>
+        <tbody>
+        {% for group in groups %}
+            <tr>
+                <td><strong><a href="{% url 'list_students' group.id %}"><i class="glyphicon glyphicon-list"></i> {{ group.name }}</a></strong></td>
+                <td>{% if group.head %}{{ group.head.surname }}{% else %}
+                    <i class="glyphicon glyphicon-ban-circle"></i>{% endif %}</td>
+                <td>{% if group.student_set.exists %}
+                        {{ group.student_set.count }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'edit_group' group.id %}"><i class="glyphicon glyphicon-pencil"></i> Edit group</a>
+                    <a href="{% url 'delete_group' group.id %}"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+    <div class="form-actions">
+        <a href="{% url 'add_student' %}" class="btn btn-primary">Add student</a>
+        <a href="{% url 'add_group' %}" class="btn btn-primary">Add group</a>
+    </div>
+
+</div>
+{% endblock %}

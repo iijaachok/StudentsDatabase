@@ -1,0 +1,25 @@
+{% extends 'core.html' %}
+{% load bootstrap %}
+
+{% block title %}Log in{% endblock %}
+{% block content %}
+
+<div class="well">
+    <h1>Login</h1>
+
+    <form action="." method="POST" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+            {{ form|bootstrap }}
+        </fieldset>
+
+        <div class="form-actions">
+            <a href="{% url 'index' %}" class="btn btn-warning">(NOPE)</a>
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <input type="hidden" name="next" value="{{ next }}"/>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

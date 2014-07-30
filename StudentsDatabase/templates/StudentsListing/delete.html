@@ -1,0 +1,23 @@
+{% extends 'core.html' %}
+{% load bootstrap %}
+
+{% block content %}
+
+<div class="well" style="margin: 0 auto; width: 500px">
+    <h1 style="margin-bottom: 30px;">Delete?</h1>
+    {{ target.name }} will be removed permanently.
+    <form action="." method="POST" class="form-horizontal">
+        {% csrf_token %}
+        <fieldset>
+            {{ form|bootstrap }}
+        </fieldset>
+
+        <div class="form-actions">
+            <a href="{% url 'index' %}" class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left"></i>Back</a>
+        <input class="btn btn-danger" type="submit" value="Delete">
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}
